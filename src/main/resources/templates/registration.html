@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="fragments :: navbar"></nav>
+
+<h4>New User Registration</h4>
+
+<form autocomplete="off" action="#" th:action="@{/register}"
+      th:object="${user}" method="post">
+
+    Username <mark><strong>
+    <span th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}">Username error</span>
+</strong></mark>
+    <input type="text" id="username" placeholder="Username"
+           th:field="*{username}" /><br />
+
+    Password <mark><strong>
+    <span th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}">Password error</span>
+</strong></mark>
+
+    <input type="text" id="password" placeholder="password"
+           th:field="*{password}" /><br />
+
+    <input type="checkbox" name="isEmployer" value="EMPLOYER">Employer
+    <input type="checkbox" name="isApplicant" value="APPLICANT">Applicant
+    <input type="checkbox" name="isAdmin" value="ADMIN">Admin
+
+    <button type="submit" class="btn btn-default">Submit</button>
+
+</form>
+</body>
+</html>
